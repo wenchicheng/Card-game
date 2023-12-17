@@ -6,15 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: 0.5s;
+    }
+
+    body {
+      background-color: #f6ebd7;
+    }
+
+    .container {
+      width: 100%;
+      margin: auto;
+      padding-top: 20px;
+    }
+
+    .top {
+      width: 100%;
+      height: 100px;
+      background: url("./cards/logo.png") no-repeat center/contain;
+    }
+
+    .footer {
+      text-align: center;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .card {
-      width: 300px;
-      height: 300px;
-      position: relative;
-      float: left;
-      margin: 10px;
-      /* 設定子元素在 3D 空間內 */
+      width: 120px;
+      height: 120px;
       transform-style: preserve-3d;
-      transition: transform 1s;
+      transition: transform 0.5s;
+    }
+
+    img {
+      width: 100%;
     }
 
     .card-front {
@@ -25,7 +58,6 @@
       background-repeat: no-repeat;
       background-position: center;
       position: absolute;
-      /* 隱藏背面 */
       backface-visibility: hidden;
     }
 
@@ -42,33 +74,147 @@
     }
 
     .card-close {
+      /* 一開始卡片為翻背面的狀態，所以要加此class */
       transform: rotateY(180deg);
     }
+
+    @media (min-width: 576px) {
+      .container {
+        width: 90%;
+      }
+
+      .card {
+        width: 25%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        width: 85%;
+      }
+
+      .card {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+
+    @media (min-width: 992px) {
+      .container {
+        width: 85%;
+      }
+
+      .row {
+        margin: 40px 0;
+      }
+
+      .card {
+        width: 200px;
+        height: 200px;
+        padding: 4px;
+      }
+    }
+
+
+    @media (min-width: 1200px) {
+      .container {
+        width: 85%;
+      }
+
+      .row {
+        margin: 40px 0;
+      }
+
+      .card {
+        width: 250px;
+        height: 250px;
+        padding: 4px;
+      }
+    }
   </style>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
-    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
-    crossorigin='anonymous'></script>
+
+
 </head>
 
 <body>
-  <!-- <div class="card">
-    <div class="card-front"></div>
-    <div class="card-back"></div>
+  <!-- <div class="container">
+    <div class="top"></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="card">
+        <div class="card-front"></div>
+        <div class="card-back"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer">
+      <div class="copyright">&copy;2023 wenchicheng</div>
+    </div>
   </div> -->
-  <div id="game"></div>
-  <script>
-    // $(document).ready(function () {})
-    // $(function () {})
 
-    // 產生 16 張卡片
+  <div id="game"></div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js'
+    integrity='sha512-1SVc8wK7Y/XRAKRKfP09ILQmzJGwqq6m66x6mWa7r36j+/fa+3kz46s8kvELsGc52yo1as48nneFic7BZKMu8Q=='
+    crossorigin='anonymous'></script>
+
+
+  <script>
+    // 清空 #game 的內容
+    $('#game').empty();
+
+    // 添加頂部
+    $('#game').append(`
+  <div class="container">
+    <div class="top"></div>
+  </div>
+`);
+
+    // 不重複部分結束，開始循環生成卡片部分
+    $('#game').append(`
+  <div class="container">
+    <div class="row">
+  </div>
+</div>
+`);
+
+    // 生成卡片
     for (let i = 0; i < 12; i++) {
-      $('#game').append(`
-        <div class="card card-close">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-      `)
+      $('.row').append(`
+    <div class="card card-close">
+      <div class="card-front"></div>
+      <div class="card-back"></div>
+    </div>
+  `);
     }
+
+    // 循環生成卡片部分結束，添加底部
+    $('#game').append(`
+  <div class="container">
+    <div class="footer">
+      <div class="copyright">&copy;2023 wenchicheng</div>
+    </div>
+  </div>
+`);
+
+    // -------------------------------
+
+    // // 產生 16 張卡片
+    // for (let i = 0; i < 12; i++) {
+    //   $('#game').append(`
+    //       <div class="card card-close">
+    //         <div class="card-front"></div>
+    //         <div class="card-back"></div>
+    //       </div>
+    //     `)
+    // }
 
     // 決定每張的數字
     $('.card').each(function (index) {
@@ -115,12 +261,27 @@
           $('.card:not(.card-close)').addClass('card-close')
           // 過關判斷
           if ($('.card-ok').length === $('.card').length) {
-            alert('過關')
+            Swal.fire({
+              title: "恭喜過關",
+              width: 600,
+              padding: "3em",
+              color: "#fff",
+              imageUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2dwdmZ5N3g4OWRzdXVmZjUwMWV1YWw3aGpkZGhidjAwMzhid2U5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QyJ0We4GHpjBa7PvKL/giphy.gif",
+              imageWidth: 480,
+              imageHeight: 392,
+              imageAlt: "Custom image",
+              background: "#fff url(https://free-paper-texture.com/p/p0297/p0297_m.jpg)",
+              backdrop: `
+              rgba(188,159,119,0.4)
+            `
+            });
           }
         }, 1000)
       }
     })
   </script>
+
+
 </body>
 
 </html>
