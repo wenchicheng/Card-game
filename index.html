@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    @font-face {
+      font-family: SweiGothicCJKtc-Regular;
+      src: url(https://cdn.jsdelivr.net/gh/max32002/swei-gothic@2.129/WebFont/CJK%20TC/SweiGothicCJKtc-Regular.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/swei-gothic@2.129/WebFont/CJK%20TC/SweiGothicCJKtc-Regular.woff) format("woff");
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -15,7 +20,10 @@
 
     body {
       background-color: #f6ebd7;
+      font-family: 'Noto Sans', '微軟正黑體';
     }
+
+
 
     .container {
       width: 100%;
@@ -132,6 +140,21 @@
         padding: 4px;
       }
     }
+
+
+    .text {
+      font-weight: 400;
+      letter-spacing: 1.5;
+      font-size: 1rem;
+      line-height: 28px;
+    }
+
+    .title {
+      font-weight: 600;
+      letter-spacing: 1.2;
+      font-size: 1rem;
+      line-height: 32px;
+    }
   </style>
 
 
@@ -155,6 +178,21 @@
     </div>
   </div> -->
 
+  <!-- --------------------------- -->
+
+  <!-- <p class="title">
+    短促音節的「喵！」：<br>
+  </p>
+  <p class="text">
+    跟你打招呼，問候像是「嗨！」的意思<br>
+  </p>
+  <p class="title">
+    長音「喵～喵～」：<br>
+  </p>
+  <p class="text">
+    很開心很興奮，這時候摸摸牠們會更棒
+  </p> -->
+
   <div id="game"></div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
@@ -167,6 +205,8 @@
 
 
   <script>
+
+
 
     // 清空 #game 的內容
     $('#game').empty();
@@ -257,38 +297,125 @@
           $('.card:not(.card-close)').addClass('card-ok')
           $('.card:not(.card-close)').fadeTo(1000, 0)
 
-          // 一秒後顯示 alert 視窗
+          // 配對完成後顯示說明視窗
+          // text:只能放文字，html：可以放語法
           setTimeout(function () {
             switch (cardNumber) {
               case '1':
                 Swal.fire({
-                  title: "給鏟屎官的嗨",
-                  html: `
-                  單音節短促的「喵！」：<br>
-                  跟你打招呼，問候像是「嗨！」的意思<br>
-                  連續一直喊叫「喵～喵～」：<br>
-                  很開心很興奮，這時候摸摸牠們會更棒`,
-                  // text:只能放文字，html：可以放語法
-                  imageUrl: "https://unsplash.it/400/200",
-                  imageWidth: 400,
-                  imageHeight: 200,
-                  imageAlt: "Custom image"
+                  title: "嗨~",
+                  html:
+                    `<p class="title">
+                      短音「喵！」<br>
+                    </p>
+                    <p class="text">
+                      跟你打招呼，問候像是「嗨！」的意思<br>
+                    </p>
+                    
+                  `,
+                  imageUrl: "./cards/1fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "~(=^‥^)ノ",
+                  confirmButtonColor: '#B07736'
                 });
                 break;
               case '2':
-                alert('相同卡片 2fr.png 配對成功！顯示 B 視窗');
+                Swal.fire({
+                  title: "救命啊！！！",
+                  html:
+                    `<p class="title">
+                      喵~~~~（大聲尖叫）
+                    </p>
+                      「啊啊！！好可怕！！！」<br>
+                      「不要啊～～」受到嚴重威脅的求救訊號
+                    </p>
+                  `,
+                  imageUrl: "./cards/2fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "<(ΦωΦ)>",
+                  confirmButtonColor: '#B07736'
+                });
                 break;
               case '3':
-                alert('相同卡片 3fr.png 配對成功！顯示 C 視窗');
+                Swal.fire({
+                  title: "害怕中~生人勿近",
+                  html:
+                    `<p class="title">
+                      哈___斯___
+                    </p>
+                    <p class="text">
+                      「這是哪裡？好可怕！」<br>
+                      「你是誰！？我不認識你！」<br>
+                      看到陌生的人、動物或環境時，<br>
+                      貓咪內心害怕、有點不安的時候<br>
+                    </p>
+                  `,
+                  imageUrl: "./cards/3fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "(=ＴェＴ=)",
+                  confirmButtonColor: '#B07736'
+                });
                 break;
               case '4':
-                alert('相同卡片 4fr.png 配對成功！顯示 D 視窗');
+                Swal.fire({
+                  title: "陪我玩~~",
+                  html:
+                    `<p class="title">
+                      長音「喵～喵～」
+                    </p>
+                    <p class="text">
+                      通常是表達需求，想讓我們陪牠玩<br>
+                      幫牠開門，或是餵牠吃飯
+                    </p>
+                  `,
+                  imageUrl: "./cards/4fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "(=^‥^=)",
+                  confirmButtonColor: '#B07736'
+                });
                 break;
               case '5':
-                alert('相同卡片 5fr.png 配對成功！顯示 E 視窗');
+                Swal.fire({
+                  title: "敖——嗚——",
+                  html:
+                    `<p class="title">
+                      別過來喔！<br>
+                    </p>
+                    <p class="text">
+                      「我要揍你了！」<br>
+                      「我真的會咬你喔！」
+                      
+                    </p>
+                  `,
+                  imageUrl: "./cards/5fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "(=｀ェ´=)",
+                  confirmButtonColor: '#B07736'
+                });
                 break;
               case '6':
-                alert('相同卡片 6fr.png 配對成功！顯示 F 視窗');
+                Swal.fire({
+                  title: "好滿足~~",
+                  html:
+                    `<p class="title">
+                      呼嚕聲<br>
+                    </p>
+                    <p class="text">
+                      貓多半處於舒服放鬆，<br>
+                      或身心感到滿足時的狀態
+                    </p>
+                  `,
+                  imageUrl: "./cards/6fr.png",
+                  imageWidth: 300,
+                  imageHeight: 300,
+                  imageAlt: "ヽ(=^･ω･^=)丿",
+                  confirmButtonColor: '#B07736'
+                });
                 break;
               default:
                 alert('相同卡片配對成功！');
@@ -311,9 +438,8 @@
               imageHeight: 392,
               imageAlt: "Custom image",
               background: "#fff url(https://free-paper-texture.com/p/p0297/p0297_m.jpg)",
-              backdrop: `
-              rgba(188,159,119,0.4)
-            `
+              backdrop: ` rgba(188,159,119,0.4)`,
+              confirmButtonColor: '#B07736'
             });
           }
         }, 1000)
