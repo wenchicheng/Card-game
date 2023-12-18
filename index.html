@@ -167,6 +167,7 @@
 
 
   <script>
+
     // 清空 #game 的內容
     $('#game').empty();
 
@@ -252,8 +253,47 @@
           $('.card:not(.card-close)').eq(0).attr('data-number') ===
           $('.card:not(.card-close)').eq(1).attr('data-number')
         ) {
+          const cardNumber = $('.card:not(.card-close)').eq(0).attr('data-number')
           $('.card:not(.card-close)').addClass('card-ok')
           $('.card:not(.card-close)').fadeTo(1000, 0)
+
+          // 一秒後顯示 alert 視窗
+          setTimeout(function () {
+            switch (cardNumber) {
+              case '1':
+                Swal.fire({
+                  title: "給鏟屎官的嗨",
+                  html: `
+                  單音節短促的「喵！」：<br>
+                  跟你打招呼，問候像是「嗨！」的意思<br>
+                  連續一直喊叫「喵～喵～」：<br>
+                  很開心很興奮，這時候摸摸牠們會更棒`,
+                  // text:只能放文字，html：可以放語法
+                  imageUrl: "https://unsplash.it/400/200",
+                  imageWidth: 400,
+                  imageHeight: 200,
+                  imageAlt: "Custom image"
+                });
+                break;
+              case '2':
+                alert('相同卡片 2fr.png 配對成功！顯示 B 視窗');
+                break;
+              case '3':
+                alert('相同卡片 3fr.png 配對成功！顯示 C 視窗');
+                break;
+              case '4':
+                alert('相同卡片 4fr.png 配對成功！顯示 D 視窗');
+                break;
+              case '5':
+                alert('相同卡片 5fr.png 配對成功！顯示 E 視窗');
+                break;
+              case '6':
+                alert('相同卡片 6fr.png 配對成功！顯示 F 視窗');
+                break;
+              default:
+                alert('相同卡片配對成功！');
+            }
+          }, 1000);
         }
 
         setTimeout(function () {
