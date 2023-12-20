@@ -180,20 +180,21 @@
 
   <!-- --------------------------- -->
 
-  <!-- <p class="title">
-    短促音節的「喵！」：<br>
-  </p>
-  <p class="text">
-    跟你打招呼，問候像是「嗨！」的意思<br>
-  </p>
-  <p class="title">
-    長音「喵～喵～」：<br>
-  </p>
-  <p class="text">
-    很開心很興奮，這時候摸摸牠們會更棒
-  </p> -->
 
   <div id="game"></div>
+
+  <!-- 音檔 -------------------------------------------->
+  <audio id="hissing" preload="auto">
+    <source src="./mp3/3-hissing.mp3" type="audio/mp3">
+  </audio>
+
+  <audio id="angry" preload="auto">
+    <source src="./mp3/5-angry.wav" type="audio/wav">
+  </audio>
+
+
+
+
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
     integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
@@ -335,7 +336,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "<(ΦωΦ)>",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 2
+                    document.getElementById('hissing').play();
+                  }
                 });
                 break;
               case '3':
@@ -356,7 +361,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "(=ＴェＴ=)",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 2
+                    document.getElementById('hissing').play();
+                  }
                 });
                 break;
               case '4':
@@ -395,7 +404,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "(=｀ェ´=)",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 2
+                    document.getElementById('angry').play();
+                  }
                 });
                 break;
               case '6':
@@ -442,7 +455,7 @@
               confirmButtonColor: '#B07736'
             });
           }
-        }, 1000)
+        }, 4000)
       }
     })
   </script>
