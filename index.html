@@ -184,12 +184,23 @@
   <div id="game"></div>
 
   <!-- 音檔 -------------------------------------------->
+  <audio id="hello" preload="auto">
+    <source src="./mp3/1-hello.wav" type="audio/wav">
+  </audio>
+  <audio id="scare" preload="auto">
+    <source src="./mp3/2-scare.wav" type="audio/wav">
+  </audio>
   <audio id="hissing" preload="auto">
     <source src="./mp3/3-hissing.mp3" type="audio/mp3">
   </audio>
-
-  <audio id="angry" preload="auto">
-    <source src="./mp3/5-angry.wav" type="audio/wav">
+  <audio id="meow" preload="auto">
+    <source src="./mp3/4-meow.mp3" type="audio/mp3">
+  </audio>
+  <audio id="growl" preload="auto">
+    <source src="./mp3/5-growls.mp3" type="audio/mp3">
+  </audio>
+  <audio id="purr" preload="auto">
+    <source src="./mp3/6-purr.mp3" type="audio/mp3">
   </audio>
 
 
@@ -318,7 +329,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "~(=^‥^)ノ",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 1
+                    document.getElementById('hello').play();
+                  }
                 });
                 break;
               case '2':
@@ -339,7 +354,7 @@
                   confirmButtonColor: '#B07736',
                   didOpen: () => {
                     // 配對成功跳出通知時播放音檔 2
-                    document.getElementById('hissing').play();
+                    document.getElementById('scare').play();
                   }
                 });
                 break;
@@ -363,7 +378,7 @@
                   imageAlt: "(=ＴェＴ=)",
                   confirmButtonColor: '#B07736',
                   didOpen: () => {
-                    // 配對成功跳出通知時播放音檔 2
+                    // 配對成功跳出通知時播放音檔 3
                     document.getElementById('hissing').play();
                   }
                 });
@@ -384,7 +399,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "(=^‥^=)",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 4
+                    document.getElementById('meow').play();
+                  }
                 });
                 break;
               case '5':
@@ -406,8 +425,8 @@
                   imageAlt: "(=｀ェ´=)",
                   confirmButtonColor: '#B07736',
                   didOpen: () => {
-                    // 配對成功跳出通知時播放音檔 2
-                    document.getElementById('angry').play();
+                    // 配對成功跳出通知時播放音檔 5
+                    document.getElementById('growl').play();
                   }
                 });
                 break;
@@ -427,7 +446,11 @@
                   imageWidth: 300,
                   imageHeight: 300,
                   imageAlt: "ヽ(=^･ω･^=)丿",
-                  confirmButtonColor: '#B07736'
+                  confirmButtonColor: '#B07736',
+                  didOpen: () => {
+                    // 配對成功跳出通知時播放音檔 6
+                    document.getElementById('purr').play();
+                  }
                 });
                 break;
               default:
@@ -441,21 +464,24 @@
           $('.card:not(.card-close)').addClass('card-close')
           // 過關判斷
           if ($('.card-ok').length === $('.card').length) {
-            Swal.fire({
-              title: "恭喜過關",
-              width: 600,
-              padding: "3em",
-              color: "#fff",
-              imageUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2dwdmZ5N3g4OWRzdXVmZjUwMWV1YWw3aGpkZGhidjAwMzhid2U5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QyJ0We4GHpjBa7PvKL/giphy.gif",
-              imageWidth: 480,
-              imageHeight: 392,
-              imageAlt: "Custom image",
-              background: "#fff url(https://free-paper-texture.com/p/p0297/p0297_m.jpg)",
-              backdrop: ` rgba(188,159,119,0.4)`,
-              confirmButtonColor: '#B07736'
-            });
+            setTimeout(function () {
+              Swal.fire({
+                title: "恭喜過關",
+                width: 600,
+                padding: "3em",
+                color: "#fff",
+                imageUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2dwdmZ5N3g4OWRzdXVmZjUwMWV1YWw3aGpkZGhidjAwMzhid2U5ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QyJ0We4GHpjBa7PvKL/giphy.gif",
+                imageWidth: 480,
+                imageHeight: 392,
+                imageAlt: "Custom image",
+                background: "#fff url(https://free-paper-texture.com/p/p0297/p0297_m.jpg)",
+                backdrop: ` rgba(188,159,119,0.4)`,
+                confirmButtonColor: '#B07736',
+              });
+            }, 3000);
           }
-        }, 4000)
+        }
+          , 1000)
       }
     })
   </script>
