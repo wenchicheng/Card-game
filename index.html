@@ -39,6 +39,7 @@
 
     .footer {
       text-align: center;
+      margin: 20px 0 0 0;
     }
 
     .row {
@@ -48,8 +49,8 @@
     }
 
     .card {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       transform-style: preserve-3d;
       transition: transform 0.5s;
     }
@@ -87,12 +88,22 @@
     }
 
     @media (min-width: 576px) {
+      #game {
+        padding: 20px;
+      }
+
       .container {
         width: 90%;
+        padding: 0;
+      }
+
+      .top {
+        height: 112px;
       }
 
       .card {
-        width: 25%;
+        width: 180px;
+        height: 180px;
       }
     }
 
@@ -111,10 +122,15 @@
     @media (min-width: 992px) {
       .container {
         width: 85%;
+        padding: 20px 0;
+      }
+
+      .top {
+        height: 140px;
       }
 
       .row {
-        margin: 40px 0;
+        margin: 0;
       }
 
       .card {
@@ -128,16 +144,21 @@
     @media (min-width: 1200px) {
       .container {
         width: 85%;
+        padding: 24px 0 0 0;
       }
 
       .row {
-        margin: 40px 0;
+        margin: 0;
       }
 
       .card {
         width: 250px;
         height: 250px;
         padding: 4px;
+      }
+
+      .top {
+        height: 200px;
       }
     }
 
@@ -197,7 +218,7 @@
     <source src="./mp3/4-meow.mp3" type="audio/mp3">
   </audio>
   <audio id="growl" preload="auto">
-    <source src="./mp3/5-growls.mp3" type="audio/mp3">
+    <source src="./mp3/5-growl.mp3" type="audio/mp3">
   </audio>
   <audio id="purr" preload="auto">
     <source src="./mp3/6-purr.mp3" type="audio/mp3">
@@ -466,7 +487,7 @@
           if ($('.card-ok').length === $('.card').length) {
             setTimeout(function () {
               Swal.fire({
-                title: "恭喜過關",
+                title: "恭喜！更了解喵星人啦~",
                 width: 600,
                 padding: "3em",
                 color: "#fff",
@@ -477,8 +498,14 @@
                 background: "#fff url(https://free-paper-texture.com/p/p0297/p0297_m.jpg)",
                 backdrop: ` rgba(188,159,119,0.4)`,
                 confirmButtonColor: '#B07736',
-              });
-            }, 3000);
+                confirmButtonText: "再玩一次",
+
+              }).then(function (result) {
+
+                // 重新整理網頁
+                location.reload();
+              })
+            }, 3000)
           }
         }
           , 1000)
