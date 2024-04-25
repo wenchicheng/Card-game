@@ -108,7 +108,12 @@
 
     .footer {
       text-align: center;
-      margin: 20px 0 0 0;
+      margin: 0 0 20px 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      color: #775d4b;
     }
 
     .row {
@@ -196,8 +201,8 @@
       }
 
       .card {
-        width: 200px;
-        height: 200px;
+        width: 160px;
+        height: 160px;
       }
     }
 
@@ -205,11 +210,11 @@
     @media (min-width: 992px) {
       .container {
         width: 85%;
-        padding: 20px 0;
+        padding: 4px 0;
       }
 
       .top {
-        height: 140px;
+        height: 120px;
       }
 
       .row {
@@ -227,6 +232,31 @@
     @media (min-width: 1200px) {
       .container {
         width: 85%;
+        padding: 40px 0 0 0;
+      }
+
+      .row {
+        margin: 0;
+      }
+
+      .card {
+        width: 160px;
+        height: 160px;
+        padding: 4px;
+      }
+
+      .top {
+        height: 160px;
+      }
+
+      #startScreen.hide {
+        transform: translateY(-100%);
+      }
+    }
+
+    @media (min-width: 1400px) {
+      .container {
+        width: 90%;
         padding: 24px 0 0 0;
       }
 
@@ -235,8 +265,8 @@
       }
 
       .card {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
         padding: 4px;
       }
 
@@ -247,7 +277,31 @@
       #startScreen.hide {
         transform: translateY(-100%);
       }
+    }
 
+    @media (min-width: 1600px) {
+      .container {
+        width: 80%;
+        padding: 24px 0 0 0;
+      }
+
+      .row {
+        margin: 0;
+      }
+
+      .card {
+        width: 210px;
+        height: 210px;
+        padding: 4px;
+      }
+
+      .top {
+        height: 200px;
+      }
+
+      #startScreen.hide {
+        transform: translateY(-100%);
+      }
     }
   </style>
 
@@ -359,7 +413,7 @@
     $('#game').append(`
   <div class="container">
     <div class="footer">
-      <div class="copyright">&copy;2023 wenchicheng</div>
+      <div class="copyright">&copy;2023 Wen Chi Cheng. All rights reserved.</div>
     </div>
   </div>
 `);
